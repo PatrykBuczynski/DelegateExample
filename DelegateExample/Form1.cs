@@ -15,9 +15,22 @@ namespace DelegateExample
         public Action<String> myActionDelegate;
         public Func<Double, Double> operationOne;
         public Func<Double, Double, Double> operationTwo;
+        readonly List<string> oneArgumentList = new List<string>();
+        readonly List<string> twoArgumentsList = new List<string>();
+
         public MainWindow()
         {
             InitializeComponent();
+            oneArgumentList.Add("sqrt");
+            oneArgumentList.Add("factorial");
+
+            twoArgumentsList.Add("+");
+            twoArgumentsList.Add("-");
+            twoArgumentsList.Add("*");
+            twoArgumentsList.Add("/");
+
+            oneArgumentRadioButton.Checked = true;
+
         }
 
         private void DialogCheckBox_CheckedChanged(object sender, EventArgs e)
@@ -56,7 +69,39 @@ namespace DelegateExample
 
         private void GoButton_Click(object sender, EventArgs e)
         {
-            myActionDelegate("Results: ");
+            if (oneArgumentRadioButton.Checked) 
+            {
+                if (String.Compare(mathComboBox.SelectedItem.ToString(), "factorial") == 0)
+                {
+                    operationOne = (double x) => (int)x <= 1 ? 1 : (int) x * operationOne(x-1);
+                }
+                if (String.Compare(mathComboBox.SelectedItem.ToString(), "sqrt") == 0)
+                {
+                    operationOne = (double x) => Math.Sqrt(x);
+                }
+                myActionDelegate("Results: " + operationOne(Convert.ToDouble(firstArgumentTextBox.Text)));
+            }
+            if (twoArgumentsRadioButton.Checked)
+            {
+                if (String.Compare(mathComboBox.SelectedItem.ToString(), "+") == 0)
+                {
+                    operationTwo = (double x, double y) => x + y;
+                }
+                if (String.Compare(mathComboBox.SelectedItem.ToString(), "-") == 0)
+                {
+                    operationTwo = (double x, double y) => x - y;
+                }
+                if (String.Compare(mathComboBox.SelectedItem.ToString(), "*") == 0)
+                {
+                    operationTwo = (double x, double y) => x * y;
+                }
+                if (String.Compare(mathComboBox.SelectedItem.ToString(), "/") == 0)
+                {
+                    operationTwo = (double x, double y) => y == 0 ? 0 : x / y;
+                }
+                myActionDelegate("Results: " + operationTwo(Convert.ToDouble(firstArgumentTextBox.Text), Convert.ToDouble(secondArgumentTextBox.Text)));
+            }
+
         }
 
         private void oneArgumentRadioButton_CheckedChanged(object sender, EventArgs e)
@@ -64,10 +109,7 @@ namespace DelegateExample
             if (oneArgumentRadioButton.Checked)
             {
                 secondArgumentTextBox.Visible = false;
-            }
-            else 
-            {
-                
+                mathComboBox.DataSource = oneArgumentList;
             }
         }
 
@@ -76,11 +118,11 @@ namespace DelegateExample
             if (twoArgumentsRadioButton.Checked)
             {
                 secondArgumentTextBox.Visible = true;
+                mathComboBox.DataSource = twoArgumentsList;
             }
-            else 
-            {
 
-            }
         }
+
+
     }
 }

@@ -76,11 +76,10 @@
             // oneArgumentRadioButton
             // 
             this.oneArgumentRadioButton.AutoSize = true;
-            this.oneArgumentRadioButton.Location = new System.Drawing.Point(6, 5);
+            this.oneArgumentRadioButton.Location = new System.Drawing.Point(0, 5);
             this.oneArgumentRadioButton.Name = "oneArgumentRadioButton";
             this.oneArgumentRadioButton.Size = new System.Drawing.Size(93, 17);
             this.oneArgumentRadioButton.TabIndex = 3;
-            this.oneArgumentRadioButton.TabStop = true;
             this.oneArgumentRadioButton.Text = "One Argument";
             this.oneArgumentRadioButton.UseVisualStyleBackColor = true;
             this.oneArgumentRadioButton.CheckedChanged += new System.EventHandler(this.oneArgumentRadioButton_CheckedChanged);
@@ -92,7 +91,6 @@
             this.twoArgumentsRadioButton.Name = "twoArgumentsRadioButton";
             this.twoArgumentsRadioButton.Size = new System.Drawing.Size(99, 17);
             this.twoArgumentsRadioButton.TabIndex = 4;
-            this.twoArgumentsRadioButton.TabStop = true;
             this.twoArgumentsRadioButton.Text = "Two Arguments";
             this.twoArgumentsRadioButton.UseVisualStyleBackColor = true;
             this.twoArgumentsRadioButton.CheckedChanged += new System.EventHandler(this.twoArgumentsRadioButton_CheckedChanged);
@@ -128,7 +126,6 @@
             this.groupBox1.Size = new System.Drawing.Size(267, 33);
             this.groupBox1.TabIndex = 8;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "groupBox1";
             // 
             // MainWindow
             // 
